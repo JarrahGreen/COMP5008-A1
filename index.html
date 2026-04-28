@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 1</title>
+
+    <style>
+        #canvas {
+            background-color: yellow;
+        }
+        polygon {
+            fill: red;
+            stroke-width: 1;
+            stroke: black;
+        }
+        .container {
+            display: grid;
+            grid-template-areas:
+                    "up up"
+                    "left right"
+                    "down down";
+        }
+        div {
+            max-width: 400px;
+        }
+        div.up {
+            grid-area: up;
+            justify-self: center;
+        }
+        div.left {
+            grid-area: left;
+        }
+        div.right {
+            grid-area: right;
+        }
+        div.down {
+            grid-area: down;
+            justify-self: center;
+        }
+    </style>
+</head>
+<body>
+
+<svg width="400" height="400" id="canvas">
+    <circle r="15" cx="115" cy="160" ></circle>
+    <circle stroke="white" stroke-width="2" r="10" cx="115" cy="160"></circle>
+
+    <circle r="15" cx="190" cy="160" ></circle>
+    <circle stroke="white" stroke-width="2" r="10" cx="190" cy="160"></circle>
+
+    <polygon points="
+    100,100
+    180,100
+    195,125
+    225,127
+    225,160
+    85,160
+    85,130
+
+"></polygon>
+
+</svg>
+
+<div class="container">
+    <div class="up">
+        <button onclick="translateY()">Translate Up</button>
+    </div>
+    <div class="left">
+        <button onclick="translateX()">Translate Left</button>
+    </div>
+    <div class="right">
+        <button style="float: right" onclick="translateX()">Translate Right</button>
+    </div>
+    <div class="down">
+        <button onclick="translateY()">Translate Down</button>
+    </div>
+</div>
+
+<script>
+    function translateX() {
+        const newLength = document.getElementById("svgLength").value;
+        document.getElementById("svg").setAttribute("x2", newLength);
+    }
+
+    function translateY() {
+        const newLength = document.getElementById("svgLength").value;
+        document.getElementById("svg").setAttribute("y2", newLength);
+    }
+</script>
+
+</body>
+</html>
