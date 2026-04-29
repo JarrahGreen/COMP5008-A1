@@ -37,55 +37,102 @@
             grid-area: down;
             justify-self: center;
         }
+        .right button {
+            float: right;
+        }
+        .innerCircle {
+            stroke: white;
+            stroke-width: 2;
+        }
     </style>
 </head>
 <body>
 
 <svg width="400" height="400" id="canvas">
-    <circle r="15" cx="115" cy="160" ></circle>
-    <circle stroke="white" stroke-width="2" r="10" cx="115" cy="160"></circle>
+    <g id="carElements">
+        <circle r="15" cx="115" cy="160" ></circle>
+        <circle class="innerCircle"  r="10" cx="115" cy="160"></circle>
 
-    <circle r="15" cx="190" cy="160" ></circle>
-    <circle stroke="white" stroke-width="2" r="10" cx="190" cy="160"></circle>
+        <circle r="15" cx="190" cy="160" ></circle>
+        <circle class="innerCircle" r="10" cx="190" cy="160"></circle>
 
-    <polygon points="
-    100,100
-    180,100
-    195,125
-    225,127
-    225,160
-    85,160
-    85,130
+        <polygon points="
+            100,100
+            180,100
+            195,125
+            225,127
+            225,160
+            85,160
+            85,130
+        "></polygon>
+    </g>
 
-"></polygon>
 
 </svg>
 
 <div class="container">
     <div class="up">
-        <button onclick="translateY()">Translate Up</button>
+        <button onclick="translateY(true)">Translate Up</button>
     </div>
     <div class="left">
-        <button onclick="translateX()">Translate Left</button>
+        <button onclick="translateX(true)">Translate Left</button>
     </div>
     <div class="right">
-        <button style="float: right" onclick="translateX()">Translate Right</button>
+        <button id="right" onclick="translateX(false)">Translate Right</button>
     </div>
     <div class="down">
-        <button onclick="translateY()">Translate Down</button>
+        <button onclick="translateY(false)">Translate Down</button>
     </div>
 </div>
 
+<br/>
+
+<label for="rotation">Rotation in Degrees</label>
+<input type="number" id="rotation" value="0">
+<button onclick="rotateCar()">Rotate</button>
+
 <script>
-    function translateX() {
-        const newLength = document.getElementById("svgLength").value;
-        document.getElementById("svg").setAttribute("x2", newLength);
+
+    let xPosition = 0;
+    let yPosition = 0;
+    let rotation = 0;
+    const carCenterX = (85 + 225) / 2
+    const carCenterY = (100 + 175) / 2
+
+    function translateX(left) {
+        if (left) {
+            xPosition -= 10;
+        }
+        else {
+            xPosition += 10;
+        }
+
+        const carElements = document.getElementById("carElements");
+        carElements.setAttribute("transform", "translate(" + xPosition + "," + yPosition + ") " +
+            "rotate(" + rotation + "," + carCenterX + "," + carCenterY + ")");
     }
 
-    function translateY() {
-        const newLength = document.getElementById("svgLength").value;
-        document.getElementById("svg").setAttribute("y2", newLength);
+    function translateY(up) {
+        if (up) {
+            yPosition -= 10;
+        }
+        else {
+            yPosition += 10;
+        }
+
+        const carElements = document.getElementById("carElements");
+        carElements.setAttribute("transform", "translate(" + xPosition + "," + yPosition + ") " +
+            "rotate(" + rotation + "," + carCenterX + "," + carCenterY + ")");
     }
+
+    function rotateCar() {
+        const carElements = document.getElementById("carElements");
+        rotation = document.getElementById("rotation").value;
+        carElements.setAttribute("transform", "translate(" + xPosition + "," + yPosition + ") " +
+            "rotate(" + rotation + "," + carCenterX + "," + carCenterY + ")");
+    }
+
+    
 </script>
 
 </body>
