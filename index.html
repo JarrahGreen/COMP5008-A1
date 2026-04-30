@@ -10,8 +10,8 @@
         }
         polygon {
             fill: red;
-            stroke-width: 1;
-            stroke: black;
+            stroke-width: 1.5;
+            stroke: rebeccapurple;
         }
         .container {
             display: grid;
@@ -50,20 +50,20 @@
 
 <svg width="400" height="400" id="canvas">
     <g id="carElements">
-        <circle r="15" cx="115" cy="160" ></circle>
-        <circle class="innerCircle"  r="10" cx="115" cy="160"></circle>
+        <circle r="15" cx="165" cy="210" ></circle>
+        <circle class="innerCircle"  r="10" cx="165" cy="210"></circle>
 
-        <circle r="15" cx="190" cy="160" ></circle>
-        <circle class="innerCircle" r="10" cx="190" cy="160"></circle>
+        <circle r="15" cx="240" cy="210" ></circle>
+        <circle class="innerCircle" r="10" cx="240" cy="210"></circle>
 
         <polygon points="
-            100,100
-            180,100
-            195,125
-            225,127
-            225,160
-            85,160
-            85,130
+            150,150
+            230,150
+            245,175
+            275,177
+            275,210
+            135,210
+            135,180
         "></polygon>
     </g>
 
@@ -96,8 +96,8 @@
     let xPosition = 0;
     let yPosition = 0;
     let rotation = 0;
-    const carCenterX = (85 + 225) / 2
-    const carCenterY = (100 + 175) / 2
+    const carCenterX = (135 + 275) / 2
+    const carCenterY = (150 + 225) / 2
 
     function translateX(left) {
         if (left) {
